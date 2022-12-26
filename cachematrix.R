@@ -9,14 +9,11 @@ makeCacheMatrix <- function(x = matrix()) {
     
    ## birth inverse matrix
     t <- NULL
-
-    ## sets matrix
+    
     set <- function( matrix ) {
             m <<- matrix
             t <<- NULL
     }
-
-    ## gets matrix
     get <- function() {
     	## Return the matrix
     	m
@@ -29,14 +26,12 @@ makeCacheMatrix <- function(x = matrix()) {
 
     ## gets the inverse of matrix
     getInverse <- function() {
-        ## Return the inverse property
+  
         t
     }
 
     ## returns list of methods
-    list(set = set, get = get,
-         setInverse = setInverse,
-         getInverse = getInverse)
+    list(set = set, get = get,setInverse = setInverse,getInverse = getInverse)
 
 }
 
@@ -45,24 +40,21 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## returns inverse matrix by calling cached if 'makecachematrix' has been called it retreives the cache
 cacheSolve <- function(x, ...) {
-        ## return a matrix that is the inverse of 'x'
+       
     m <- x$getInverse()
 
-    ## returns inverse if set
+  
     if( !is.null(m) ) {
             message("getting cached data")
             return(m)
     }
 
     ## gets matrix 
-    data <- x$get()
-
+    stuff <- x$get()
     ## calculates  inverse 
-    m <- solve(data) %*% data
-
+    m <- solve(stuff) %*% data
     ## sets inverse to the object
     x$setInverse(m)
-
     ## returns matrix
     m
         
